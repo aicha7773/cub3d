@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:00:06 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/12 01:43:22 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/13 21:21:30 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void function()
     void    *mlx;
 	void	*window;
     int     count;
-	void	*imgh;
+	// void	*imgh;
 
     mlx=mlx_init();
     count = 0;
