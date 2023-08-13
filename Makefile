@@ -22,5 +22,5 @@ fclean : clean
 	rm -f ${NAME}
 make re : fclean all
 
-git :
+push :
 	git add . && git commit -m "push" && git push
