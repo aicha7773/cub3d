@@ -2,7 +2,7 @@ NAME = cub3D
 
 SRC = first_file.c
 
-OBG = ${SRC %.c=%.o}
+OBG = ${SRC :%.c=%.o}
 
 CC = cc
 
@@ -12,7 +12,7 @@ CFLAGS = #-Wall -Wextra -Werror
 
 all : ${NAME}
 
-${NAME} : ${OBJ}
+${NAME} : ${SRC}
 	${CC} ${CFLAGS} ${MLX} ${SRC} -o ${NAME}
 
 clean :
