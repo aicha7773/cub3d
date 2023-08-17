@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/17 19:35:19 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/17 19:37:22 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ int	new_position(int key, t_data *data)
 		exit(0);
 	if (key == 65362)
     {
-        tab2[0]=tab[0]+1;
+        tab2[0]=tab[0]-1;
         tab2[1]=tab[1];
 		hook_in_pink(tab, tab2,data);
     }
 	if (key == 65363)
     {
-        tab2[0]=tab[0]+1;
-        tab2[1]=tab[1];
+        tab2[0]=tab[0];
+        tab2[1]=tab[1]+1;
 		hook_in_pink(tab, tab2,data);
     }
     if (key == 65364)
@@ -95,8 +95,8 @@ int	new_position(int key, t_data *data)
     }
 	if (key == 65361)
 	{
-        tab2[0]=tab[0]+1;
-        tab2[1]=tab[1];
+        tab2[0]=tab[0];
+        tab2[1]=tab[1]-1;
 		hook_in_pink(tab, tab2,data);
     }
 	return 1;
