@@ -1,6 +1,6 @@
 NAME = cub3D
 
-SRC = first_file.c
+SRC = first_file.c the_movement.c
 
 OBJ = ${SRC :%.c=%.o}
 
@@ -8,7 +8,7 @@ CC = clang
 
 MLX =-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
-CFLAGS = -I/usr/include -Imlx_linux -O3 #-Wall -Wextra -Werror 
+CFLAGS = -I/usr/include -Imlx_linux -O3 -fsanitize=address -g3 #-Wall -Wextra -Werror 
 
 all : ${NAME}
 
