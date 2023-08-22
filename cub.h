@@ -30,4 +30,4 @@ typedef struct t_data
 int	new_position(int key, t_data *data);
 void affiche(t_data *data);
 void	carre(t_data *data,int k,int d);
-
+t_pos *position(char **s);

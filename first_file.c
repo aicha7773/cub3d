@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:00:06 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 11:02:37 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 15:53:35 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void initialize(t_data *data)
 	double	pi;
 
 	pi = M_PI;
+	data->pos=position(data->s);
 	while (data->s[i])
 	{
 		j=0;

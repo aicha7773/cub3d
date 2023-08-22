@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 11:04:39 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 15:54:28 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void circle(t_data *data, int centerX, int centerY, int radius)
     }
     put_rayon(data,centerX,centerY);
 }
-
 
 void affiche(t_data *data)
 {
