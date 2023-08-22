@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 14:54:18 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:06:33 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,33 +79,32 @@ int	new_position(int key, t_data *data)
 		exit(0);
 	if (key == 65362)
     {
-		
         // new->x=data->pos->x-1;
         // new->y=data->pos->y;
-		new->x = cos(data->angle) + (1+data->pos->x);
-		new->y = sin(data->angle) + (1+data->pos->y);
+		new->x -= cos(data->angle);
+		new->y -= sin(data->angle);
 		printf("fx=%f  fy=%f x=%f y=%f angle =%f\n\n" ,data->pos->x,data->pos->y, new->x , new->y,data->angle );
 		hook_in_pink(new,data);
     }
 	if (key == 65363)
     {
-		 mlx_clear_window(data->mlx,data->window);
-        new->x=data->pos->x;
-        new->y=data->pos->y+1;
+		mlx_clear_window(data->mlx,data->window);
+        new->x -= cos(data->angle);
+		new->y += sin(data->angle);
 		hook_in_pink(new,data);
     }
     if (key == 65364)
 	{
-		 mlx_clear_window(data->mlx,data->window);
-        new->x=data->pos->x+1;
-        new->y=data->pos->y;
+		mlx_clear_window(data->mlx,data->window);
+		new->x += cos(data->angle);
+		new->y += sin(data->angle);
 		hook_in_pink(new,data);
     }
 	if (key == 65361)
 	{
 		mlx_clear_window(data->mlx,data->window);
-        new->x=data->pos->x;
-        new->y=data->pos->y-1;
+       	new->x += cos(data->angle);
+		new->y -= sin(data->angle);
 		hook_in_pink(new,data);
     }
 	if (key == 119)//W
@@ -113,12 +112,12 @@ int	new_position(int key, t_data *data)
 		data->angle+=2;
 		hook_in_pink(new,data);
 	}
-	if (key == 100)//d
+	if (key == 115)//s
 	{
 		data->angle-=2;
 		hook_in_pink(new,data);
 	}
-	// if (key == 115)//s
+	// if (key == 100)//d
 	// if (key == 97)//a
 	return 1;
 }

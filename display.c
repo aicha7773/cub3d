@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 15:54:28 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 16:49:40 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	carre(t_data *data,int k,int d)
 void	put_rayon(t_data *data,int x, int y)
 {
 	int dis=0;
-	while(dis < 70)
+	while(dis < 200)
 	{
 		x+=cos(data->angle);
 		y+=sin(data->angle);

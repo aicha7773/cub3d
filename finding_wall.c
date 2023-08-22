@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:58:31 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 15:55:16 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 16:01:07 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ t_pos *find_wall(t_data *data)
     ret->x=x;
     ret->y=y;
     return ret;
+}
+
+double Thales(double a,double b, double c)
+{
+    return ((c/a)*b);
 }
