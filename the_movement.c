@@ -6,31 +6,31 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/17 19:37:22 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 11:04:22 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int *position(char **s)
+t_pos *position(char **s)
 {
 	int i;
 
 	i=0;
     int j;
-    int *tab=malloc(2);
+    t_pos *pos=malloc(sizeof(t_pos));
 	if (!s)
-		return 0;
+		return (0);
 	while (s[i])
 	{
         j=0;
         while(s[i][j])
         {
-            if (s[i][j] == 'N')
+            if (s[i][j] == 'S')
             {
-                tab[0]=i;
-                tab[1]=j;
-			    return (NULL);
+                pos->x=i;
+                pos->y=j;
+			    return (pos);
             }
             j++;
         }
@@ -50,54 +50,67 @@ void	carree(t_data *data,int k,int d)
 		j=0;
 		while (j < harf)
 		{
-			mlx_pixel_put(data->mlx,data->window,d+i,k+j,0xFFFFFF);
+			mlx_pixel_put(data->mlx,data->window,d+i,k+j,0xFFF33F);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	hook_in_pink(int *tab,int *tab2,t_data *data)
+void	hook_in_pink(t_pos *new, t_data *data)
 {
-    carree(data,0, 0);
-    // if (data->s[tab2[0]][tab2[1]] == '0')
-    // {
-        // data->s[0][0]= '1';
-        // data->s[tab2[0]][tab2[1]]='N';
-    // }
-//    affiche(data);
+    if (data->s[(int)new->x][(int)new->y] != '1')
+    {
+		// printf("jjjjj\njjj\njjj\n");
+        data->s[(int)data->pos->x][(int)data->pos->y]= '0';
+        data->s[(int)new->x][(int)new->y]='S';
+    }
+   affiche(data);
 }
 
 int	new_position(int key, t_data *data)
 {
-	int *tab;
-    //  = position(data->s);
-    int *tab2=malloc(2);
-	if (key == 53)
+    t_pos *new;
+	new=malloc(sizeof(t_pos));
+	data->pos=position(data->s);
+	new->x=data->pos->x;
+	new->y=data->pos->y;
+	if (key == 65307)
 		exit(0);
 	if (key == 65362)
     {
-        tab2[0]=tab[0]-1;
-        tab2[1]=tab[1];
-		hook_in_pink(tab, tab2,data);
+		
+        // new->x=data->pos->x-1;
+        // new->y=data->pos->y;
+		new->x = cos(data->angle) + (1+data->pos->x);
+		new->y = sin(data->angle) + (1+data->pos->y);
+		printf("fx=%f  fy=%f x=%f y=%f angle =%f\n\n" ,data->pos->x,data->pos->y, new->x , new->y,data->angle );
+		hook_in_pink(new,data);
     }
 	if (key == 65363)
     {
-        tab2[0]=tab[0];
-        tab2[1]=tab[1]+1;
-		hook_in_pink(tab, tab2,data);
+		// mlx_clear_window(data->mlx,data->window);
+        new->x=data->pos->x;
+        new->y=data->pos->y+1;
+		hook_in_pink(new,data);
     }
     if (key == 65364)
 	{
-        tab2[0]=tab[0]+1;
-        tab2[1]=tab[1];
-		hook_in_pink(tab, tab2,data);
+		// mlx_clear_window(data->mlx,data->window);
+        new->x=data->pos->x+1;
+        new->y=data->pos->y;
+		hook_in_pink(new,data);
     }
 	if (key == 65361)
 	{
-        tab2[0]=tab[0];
-        tab2[1]=tab[1]-1;
-		hook_in_pink(tab, tab2,data);
+		// mlx_clear_window(data->mlx,data->window);
+        new->x=data->pos->x;
+        new->y=data->pos->y-1;
+		hook_in_pink(new,data);
     }
+	// if (key == 119)//W
+	// if (key == 100)//d
+	// if (key == 115)//s
+	// if (key == 97)//a
 	return 1;
 }

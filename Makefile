@@ -1,6 +1,6 @@
 NAME = cub3D
 
-SRC = first_file.c the_movement.c
+SRC = first_file.c the_movement.c display.c
 
 OBJ = ${SRC :%.c=%.o}
 
