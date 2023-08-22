@@ -39,6 +39,18 @@ void	carre(t_data *data,int k,int d)
 	}
 }
 
+void	put_rayon(t_data *data,int x, int y)
+{
+	int dis=0;
+	while(dis < 70)
+	{
+		x+=cos(data->angle);
+		y+=sin(data->angle);
+		my_mlx_pixel_put(data, x, y, 0x00FF0000);
+		dis++;
+	}
+}
+
 void circle(t_data *data, int centerX, int centerY, int radius)
 {
     int x, y;
@@ -55,6 +67,7 @@ void circle(t_data *data, int centerX, int centerY, int radius)
             }
         }
     }
+    put_rayon(data,centerX,centerY);
 }
 
 
@@ -65,7 +78,9 @@ void affiche(t_data *data)
 	int x=0;
 	int y=0;
 
-	mlx_clear_window(data->mlx,data->window);
+	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
+								&data->endian);
 	while (data->s[i])
 	{
 		y = 0;

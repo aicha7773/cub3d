@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 11:04:22 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/22 14:51:48 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,27 +89,35 @@ int	new_position(int key, t_data *data)
     }
 	if (key == 65363)
     {
-		// mlx_clear_window(data->mlx,data->window);
+		 mlx_clear_window(data->mlx,data->window);
         new->x=data->pos->x;
         new->y=data->pos->y+1;
 		hook_in_pink(new,data);
     }
     if (key == 65364)
 	{
-		// mlx_clear_window(data->mlx,data->window);
+		 mlx_clear_window(data->mlx,data->window);
         new->x=data->pos->x+1;
         new->y=data->pos->y;
 		hook_in_pink(new,data);
     }
 	if (key == 65361)
 	{
-		// mlx_clear_window(data->mlx,data->window);
+		mlx_clear_window(data->mlx,data->window);
         new->x=data->pos->x;
         new->y=data->pos->y-1;
 		hook_in_pink(new,data);
     }
-	// if (key == 119)//W
-	// if (key == 100)//d
+	if (key == 119)//W
+	{
+		data->angle+=2;
+		hook_in_pink(new,data);
+	}
+	if (key == 100)//d
+	{
+		data->angle-=2;
+		hook_in_pink(new,data);
+	}
 	// if (key == 115)//s
 	// if (key == 97)//a
 	return 1;
