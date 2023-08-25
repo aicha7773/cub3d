@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:00:06 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 15:53:35 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 01:54:09 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	function(void)
 	char	*s[] = {
 	"111111111111111111111",
 	"11001110000000000011",
-	"1100011000000001111",
+	"110001100S0000001111",
 	"1100011000001110000111",
 	"1111110000000001111",
 	"111110000000001111111",
-	"111111000S000111111",
+	"111111000000111111",
 	"111111100000111111111",
 	"110000000000000011111",
 	"100000000000000011111111",
@@ -83,7 +83,7 @@ void	function(void)
 	data->s=allocateAndCopyStrings(s);
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, 1280, 720, "Hello world!");
-	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->img = mlx_new_image(data->mlx, 1280, 720);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
 								&data->endian);
 	initialize(data);
