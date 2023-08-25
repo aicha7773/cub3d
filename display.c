@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 15:34:31 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 19:22:02 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ void	carre(t_data *data,int k,int d)
 	}
 }
 
-void	put_ray(t_data *data,int x, int y)
+void	put_ray(t_data *data,double x, double y)
 {
 	int dis=0;
 	while(dis < 200)
 	{
 		x+=cos(data->angle);
 		y+=sin(data->angle);
+		
 		my_mlx_pixel_put(data, x, y, 0x00FF0000);
 		dis++;
 	}
@@ -96,6 +97,6 @@ void affiche(t_data *data)
 		i++;
 		x+=70;
 	}
-	circle(data,data->pos->x,data->pos->y,5);
+	circle(data,data->pos->x,data->pos->y,10);
 	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 }

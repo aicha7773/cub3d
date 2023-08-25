@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 15:54:09 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 19:30:56 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pos *position(char **s)
         j=0;
         while(s[i][j])
         {
-            if (s[i][j] == 'S')
+            if (s[i][j] == 'S' ||s[i][j] == 'N' ||s[i][j] == 'E' ||s[i][j] == 'W')
             {
                 pos->y=i*70;
                 pos->x=j * 70;
@@ -71,63 +71,63 @@ void	hook_in_pink(t_pos *new, t_data *data)
 int	new_position(int key, t_data *data)
 {
 	double	pi;
+	double x,y;
 
 	pi = M_PI;
-	int x,y;
 	printf("%f\n",data->angle);
 	if (key == 65307)
 		exit(0);
 	if (key == 65362)
     {
-		x = data->pos->x + cos(data->angle);
-		y = data->pos->y + sin(data->angle);
-		// if (data->s[(int)x][(int)y] != '1')
-		// {
+		x = data->pos->x + (cos(data->angle) * 1.3);
+		y = data->pos->y + (sin(data->angle) * 1.3);
+		if (data->s[(int)y/70][(int)x/70] != '1')
+		{
 			mlx_destroy_image(data->mlx,data->img);
 			data->pos->x = x;
 			data->pos->y = y;
 			affiche(data);
-		// }
+		}
     }
 	if (key == 65363)
     {
-		x = data->pos->x + sin(data->angle);
-		y = data->pos->y + cos(data->angle);
-		// if (data->s[(int)x][(int)y] != '1')
-		// {
+		x = data->pos->x + (sin(data->angle)* 1.3);
+		y = data->pos->y + (cos(data->angle)* 1.3);
+		if (data->s[(int)y/70][(int)x/70] != '1')
+		{
 			mlx_destroy_image(data->mlx,data->img);
 			data->pos->x = x;
 			data->pos->y = y;
 			affiche(data);
-		// }
+		}
     }
     if (key == 65364)
 	{
-		x = data->pos->x - cos(data->angle);
-		y = data->pos->y - sin(data->angle);
-		// if (data->s[(int)x][(int)y] != '1')
-		// {
+		x = data->pos->x - (cos(data->angle)* 1.3);
+		y = data->pos->y - (sin(data->angle)* 1.3);
+		if (data->s[(int)y/70][(int)x/70] != '1')
+		{
 			mlx_destroy_image(data->mlx,data->img);
 			data->pos->x = x;
 			data->pos->y = y;
 			affiche(data);
-		// }
+		}
     }
 	if (key == 65361)
 	{
-		x = data->pos->x - sin(data->angle);
-		y = data->pos->y - cos(data->angle);
-		// if (data->s[(int)x][(int)y] != '1')
-		// {
+		x = data->pos->x - (sin(data->angle)* 1.3);
+		y = data->pos->y - (cos(data->angle)* 1.3);
+		if (data->s[(int)y/70][(int)x/70] != '1')
+		{
 			mlx_destroy_image(data->mlx,data->img);
 			data->pos->x = x;
 			data->pos->y = y;
 			affiche(data);
-		// }
+		}
     }
 	if (key == 119)//W
 	{
-		data->angle+=pi/8;
+		data->angle+=0.2;
 		if (data->angle > 2 *pi)
 			data->angle-=2*pi;
 		affiche(data);
