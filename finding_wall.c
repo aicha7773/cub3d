@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:58:31 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/22 16:01:07 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 15:29:33 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ double Pythagore(t_pos s, t_pos d)
 t_pos *find_wall(t_data *data)
 {
     int x,y;
+
     t_pos *ret=malloc(sizeof(t_data));
     x=data->pos->x;
     y=data->pos->y;

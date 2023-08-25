@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 02:17:25 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 15:54:09 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,50 +73,70 @@ int	new_position(int key, t_data *data)
 	double	pi;
 
 	pi = M_PI;
+	int x,y;
 	printf("%f\n",data->angle);
 	if (key == 65307)
 		exit(0);
 	if (key == 65362)
     {
-		mlx_destroy_image(data->mlx,data->img);
-		// if (data->s[(int)data->pos->x ][(int)data->pos->y] != '1')
-		data->pos->x += cos(data->angle);
-		data->pos->y += sin(data->angle);
-		affiche(data);
-     }
+		x = data->pos->x + cos(data->angle);
+		y = data->pos->y + sin(data->angle);
+		// if (data->s[(int)x][(int)y] != '1')
+		// {
+			mlx_destroy_image(data->mlx,data->img);
+			data->pos->x = x;
+			data->pos->y = y;
+			affiche(data);
+		// }
+    }
 	if (key == 65363)
     {
-		mlx_destroy_image(data->mlx,data->img);
-		data->pos->x += sin(data->angle);
-		data->pos->y += cos(data->angle);
-		affiche(data);
+		x = data->pos->x + sin(data->angle);
+		y = data->pos->y + cos(data->angle);
+		// if (data->s[(int)x][(int)y] != '1')
+		// {
+			mlx_destroy_image(data->mlx,data->img);
+			data->pos->x = x;
+			data->pos->y = y;
+			affiche(data);
+		// }
     }
     if (key == 65364)
 	{
-		mlx_destroy_image(data->mlx,data->img);
-		data->pos->x -= cos(data->angle);
-		data->pos->y -= sin(data->angle);
-		affiche(data);
+		x = data->pos->x - cos(data->angle);
+		y = data->pos->y - sin(data->angle);
+		// if (data->s[(int)x][(int)y] != '1')
+		// {
+			mlx_destroy_image(data->mlx,data->img);
+			data->pos->x = x;
+			data->pos->y = y;
+			affiche(data);
+		// }
     }
 	if (key == 65361)
 	{
-		mlx_destroy_image(data->mlx,data->img);
-		data->pos->x -= sin(data->angle);
-		data->pos->y -= cos(data->angle);
-		affiche(data);
+		x = data->pos->x - sin(data->angle);
+		y = data->pos->y - cos(data->angle);
+		// if (data->s[(int)x][(int)y] != '1')
+		// {
+			mlx_destroy_image(data->mlx,data->img);
+			data->pos->x = x;
+			data->pos->y = y;
+			affiche(data);
+		// }
     }
 	if (key == 119)//W
 	{
+		data->angle+=pi/8;
 		if (data->angle > 2 *pi)
 			data->angle-=2*pi;
-		data->angle+=5;
 		affiche(data);
 	}
 	if (key == 115)//s
 	{
+		data->angle-=pi/8;
 		if (data->angle < 2 *pi)
 			data->angle+=2*pi;
-		data->angle-=5;
 		affiche(data);
 	}
 	// if (key == 100)//d

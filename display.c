@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 02:01:55 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/25 15:34:31 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	carre(t_data *data,int k,int d)
 	}
 }
 
-void	put_rayon(t_data *data,int x, int y)
+void	put_ray(t_data *data,int x, int y)
 {
 	int dis=0;
 	while(dis < 200)
@@ -67,7 +67,7 @@ void circle(t_data *data, int centerX, int centerY, int radius)
             }
         }
     }
-    put_rayon(data,centerX,centerY);
+    put_ray(data,centerX,centerY);
 }
 
 void affiche(t_data *data)
@@ -87,8 +87,6 @@ void affiche(t_data *data)
 		while (data->s[i][j])
 		{
 			printf("%c",data->s[i][j]);
-			// if (data->s[i][j] == 'N' || data->s[i][j] == 'S' || data->s[i][j] == 'E' || data->s[i][j] == 'W')
-			// 	circle(data,y,x,5);
 			if (data->s[i][j] == '1')
 				carre(data,x,y);
 			y+=70;
@@ -101,34 +99,3 @@ void affiche(t_data *data)
 	circle(data,data->pos->x,data->pos->y,5);
 	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 }
-
-// void affiche2(t_data *data)
-// {
-// 	int i=0;
-// 	int j=0;
-// 	int x=0;
-// 	int y=0;
-
-// 	data->img = mlx_new_image(data->mlx, 1920, 1080);
-// 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
-// 								&data->endian);
-// 	while (data->s[i])
-// 	{
-// 		y = 0;
-// 		j=0;
-// 		while (data->s[i][j])
-// 		{
-// 			printf("%c",data->s[i][j]);
-// 			//if (data->s[i][j] == 'N' || data->s[i][j] == 'S' || data->s[i][j] == 'E' || data->s[i][j] == 'W')
-// 				circle(data,data->pos->y,data->pos->x,35);
-// 			//if (data->s[i][j] == '1')
-// 				carre(data,data->pos->y,data->pos->x);
-// 			y+=70;
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 		x+=70;
-// 	}
-// 	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
-// }
