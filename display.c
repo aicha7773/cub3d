@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 19:22:02 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/26 03:31:36 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ void	carre(t_data *data,int k,int d)
 	}
 }
 
-void	put_ray(t_data *data,double x, double y)
+void	put_ray(t_data *data,double x, double y,double angle)
 {
 	int dis=0;
-	while(dis < 200)
+	while(dis < 500)
 	{
-		x+=cos(data->angle);
-		y+=sin(data->angle);
-		
+		x+=cos(angle);
+		y+=sin(angle);
 		my_mlx_pixel_put(data, x, y, 0x00FF0000);
 		dis++;
 	}
@@ -55,7 +54,8 @@ void	put_ray(t_data *data,double x, double y)
 void circle(t_data *data, int centerX, int centerY, int radius)
 {
     int x, y;
-
+	int nbr=0;
+	double angle=data->angle;
     for (y = centerY - radius; y <= centerY + radius; y++)
     {
         for (x = centerX - radius; x <= centerX + radius; x++)
@@ -68,7 +68,21 @@ void circle(t_data *data, int centerX, int centerY, int radius)
             }
         }
     }
-    put_ray(data,centerX,centerY);
+	put_ray(data,centerX,centerY,data->angle);
+	while(nbr<640)
+	{
+		angle += 0.001;
+    	put_ray(data,centerX,centerY,angle);
+		nbr++;
+	}
+	nbr=0;
+	angle=data->angle;
+	while(nbr<640)
+	{
+		angle -= 0.001;
+    	put_ray(data,centerX,centerY,angle);
+		nbr++;
+	}
 }
 
 void affiche(t_data *data)

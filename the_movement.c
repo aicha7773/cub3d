@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/26 03:06:44 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/26 03:13:40 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int key_down(int key,t_data *data)
 	if (key == 65307)
 		exit(0);
 	if (key == 119)//W
-		data->keys.w
+		data->keys.w = 1;
 	if (key == 100)//d
 		data->keys.d = 1;
 	if (key == 115)//s
