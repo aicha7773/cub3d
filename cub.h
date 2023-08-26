@@ -23,6 +23,8 @@ typedef struct s_keys
     int right;
 }t_keys;
 
+
+
 typedef struct t_data
 {
     char **s;
@@ -36,6 +38,7 @@ typedef struct t_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+    double *rays;
 }t_data;
 
 void	new_position(t_data *data);
@@ -47,3 +50,4 @@ int check_key(t_data *data);
 int	ft_exit(void);
 int key_down(int key,t_data *data);
 int key_up(int key,t_data *data);
+double distance(t_data *data, double angle);

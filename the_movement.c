@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/26 03:13:40 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/26 23:16:25 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	hook_in_pink(t_pos *new, t_data *data)
 {
     if (data->s[(int)new->x][(int)new->y] != '1')
     {
-		// printf("jjjjj\njjj\njjj\n");
         data->s[(int)data->pos->x][(int)data->pos->y]= '0';
         data->s[(int)new->x][(int)new->y]='S';
     }
@@ -54,6 +53,9 @@ void	translation(t_data *data,t_pos pos)
 {
 	if (data->s[(int)pos.y/70][(int)pos.x/70] != '1')
 	{
+		// DEBUGGING STARTS
+		printf("moving to %f, %f\n", pos.x, pos.y);
+		// DEBUGGING ENDS
 		data->pos->x = pos.x;
 		data->pos->y = pos.y;
 		mlx_destroy_image(data->mlx,data->img);
@@ -66,12 +68,11 @@ void	rotation(t_data *data)
 	double	pi;
 
 	pi = M_PI;
-	
 	if (data->keys.right == 1)//right
 		data->angle+=pi/100;
 	else if (data->keys.left == 1)//left
 		data->angle-=pi/100;
-		//
+	//
 	if (data->angle > 2 *pi)
 		data->angle-=2*pi;
 	if (data->angle < 2 *pi)
@@ -81,20 +82,20 @@ void	rotation(t_data *data)
 }
 
 void	new_position(t_data *data)
-{	
+{
 	t_pos pos;
 
-	if (data->keys.w)//w
+	if (data->keys.s)//w
     {
 		pos.x = data->pos->x + cos(data->angle);
 		pos.y = data->pos->y + sin(data->angle);
     } 
-	else if (data->keys.s)//s
+	else if (data->keys.w)//s
 	{
 		pos.x = data->pos->x - cos(data->angle);
 		pos.y = data->pos->y - sin(data->angle);
     }
-	 if (data->keys.d)//d
+	if (data->keys.d)//d
     {
 		pos.x = data->pos->x + sin(data->angle);
 		pos.y = data->pos->y + cos(data->angle);
@@ -104,7 +105,8 @@ void	new_position(t_data *data)
 		pos.x =data->pos->x - sin(data->angle);
 		pos.y = data->pos->y - cos(data->angle);
     }
-	translation(data,pos);
+	if (data->keys.w || data->keys.d || data->keys.a || data->keys.s)
+		translation(data,pos);
 	if (data->keys.left || data->keys.right)
 		rotation(data);
 }
@@ -147,6 +149,10 @@ int key_up(int key,t_data *data)
 
 int check_key(t_data *data)
 {
-	new_position(data);
+	static int frames = 0;
+
+	if (frames % 500 == 0 || (data->keys.w || data->keys.d || data->keys.a || data->keys.s || data->keys.left || data->keys.right))
+		new_position(data);
+	frames++;
 	return (1);
 }
