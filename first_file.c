@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:00:06 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/25 16:21:41 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/26 02:39:56 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void initialize(t_data *data)
 
 	pi = M_PI;
 	data->pos=position(data->s);
+	data->keys.w=0;
+	data->keys.d=0;
+	data->keys.s=0;
+	data->keys.a=0;
+	data->keys.left=0;
+	data->keys.right=0;
 	while (data->s[i])
 	{
 		j=0;
@@ -88,9 +94,12 @@ void	function(void)
 								&data->endian);
 	initialize(data);
 	affiche(data);
-	mlx_key_hook (data->window , new_position, data);
+	mlx_hook(data->window, 03, 1L << 1, key_up, data);
+	mlx_hook(data->window, 02, 1L << 0, key_down, data);
 	mlx_hook(data->window, 17, 0, ft_exit, NULL);
+	mlx_loop_hook(data->mlx , check_key,data);
 	mlx_loop(data->mlx);
+	free(data);
 }
 
 int	main(void)

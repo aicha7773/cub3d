@@ -13,6 +13,16 @@ typedef struct s_pos
     double y;
 }t_pos;
 
+typedef struct s_keys
+{
+    int w;
+    int d;
+    int s;
+    int a;
+    int left;
+    int right;
+}t_keys;
+
 typedef struct t_data
 {
     char **s;
@@ -22,13 +32,18 @@ typedef struct t_data
     t_pos *pos;
     void	*img;
 	char	*addr;
+    t_keys  keys;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }t_data;
 
-int	new_position(int key, t_data *data);
+void	new_position(t_data *data);
 void affiche(t_data *data);
 void	carre(t_data *data,int k,int d);
 void circle(t_data *data, int centerX, int centerY, int radius);
 t_pos *position(char **s);
+int check_key(t_data *data);
+int	ft_exit(void);
+int key_down(int key,t_data *data);
+int key_up(int key,t_data *data);
