@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:19:44 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/26 23:16:25 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/30 19:06:10 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_pos *position(char **s)
         {
             if (s[i][j] == 'S' ||s[i][j] == 'N' ||s[i][j] == 'E' ||s[i][j] == 'W')
             {
-                pos->y=i* 70;
+                pos->y=i * 70;
                 pos->x=j * 70;
 			    return (pos);
             }
@@ -53,9 +53,6 @@ void	translation(t_data *data,t_pos pos)
 {
 	if (data->s[(int)pos.y/70][(int)pos.x/70] != '1')
 	{
-		// DEBUGGING STARTS
-		printf("moving to %f, %f\n", pos.x, pos.y);
-		// DEBUGGING ENDS
 		data->pos->x = pos.x;
 		data->pos->y = pos.y;
 		mlx_destroy_image(data->mlx,data->img);
@@ -85,12 +82,12 @@ void	new_position(t_data *data)
 {
 	t_pos pos;
 
-	if (data->keys.s)//w
+	if (data->keys.w)//w
     {
 		pos.x = data->pos->x + cos(data->angle);
 		pos.y = data->pos->y + sin(data->angle);
     } 
-	else if (data->keys.w)//s
+	else if (data->keys.s)//s
 	{
 		pos.x = data->pos->x - cos(data->angle);
 		pos.y = data->pos->y - sin(data->angle);

@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/26 23:35:46 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/30 19:07:50 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,41 @@
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
+	if( x < 0 || y < 0 || x >=1280 || y >= 720)
+		return ;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	carre_t(t_data *data,int k,int d)
+{
+	int harf = 70;
+	int i = 0;
+	int j;
+
+		while (j < harf)
+		{
+			my_mlx_pixel_put(data, d+i,k+j,0xFF5FFF);
+			j++;
+		}
+		j=0;
+		while (j < harf)
+		{
+			my_mlx_pixel_put(data, d+i+70,k+j,0xFF5FFF);
+			j++;
+		}
+		while (i < harf)
+		{
+			my_mlx_pixel_put(data, d+i,k+j+70,0xFF5FFF);
+			i++;
+		}
+		i=0;
+		while (j < harf)
+		{
+			my_mlx_pixel_put(data, d+i,k+j,0xFF5FFF);
+			i++;
+		}
 }
 
 void	carre(t_data *data,int k,int d)
@@ -54,28 +86,21 @@ void	put_ray(t_data *data,double angle,double dis)
 }
 
 void raycasting(t_data *data)
-{
+{q
 	int nbr=0;
-	double angle=data->angle;
+	double	pi;
+	pi = M_PI;
+	double angle=data->angle - pi/6;
 	int i=0;
-
-	data->rays=malloc(sizeof(double) * 1280);
-	put_ray(data,angle, distance(data,angle));
-	while(nbr<640)
+	while(nbr<1280)
 	{
-		angle += 0.001;
-		data->rays[i] = distance(data,angle);
-    	put_ray(data,angle, data->rays[i]);
-		nbr++;
-		i++;
-	}
-	nbr=0;
-	angle=data->angle;
-	while(nbr<640)
-	{
-		angle -= 0.001;
-		data->rays[i] = distance(data,angle);
-    	put_ray(data,angle, data->rays[i]);
+		angle += ((pi/3)/1280);
+		if (angle > 2 *pi)
+			angle-=2*pi;
+		if (angle < 0)
+			angle+=2*pi;
+		data->rays[i].dis = distance(data,angle,i);
+    	put_ray(data,angle, data->rays[i].dis);
 		nbr++;
 		i++;
 	}
@@ -120,6 +145,7 @@ void affiche(t_data *data)
 			// printf("%c",data->s[i][j]);
 			if (data->s[i][j] == '1')
 				carre(data,x,y);
+			carre_t(data, x,y);
 			y+=70;
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:00:06 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/26 19:36:43 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/30 18:11:23 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void initialize(t_data *data)
 
 	pi = M_PI;
 	data->pos=position(data->s);
+	data->rays=malloc(sizeof(t_rays) * 1280);
 	data->keys.w=0;
 	data->keys.d=0;
 	data->keys.s=0;
@@ -56,8 +57,7 @@ void initialize(t_data *data)
 		{
 			if (data->s[i][j] == 'N')
 			{
-				data->angle=3*pi;
-				data->angle=data->angle / 2;
+				data->angle=(3*pi)/2;
 			}
 			else if( data->s[i][j] == 'S')
 				data->angle=pi / 2;
@@ -80,11 +80,11 @@ void	function(void)
 	"11000110000000001111    ",
 	"1100011000001110000111  ",
 	"1111110000000001111     ",
-	"111110000000001111111   ",
+	"111110000N00001111111   ",
 	"111111000000111111      ",
 	"111111100000111111111   ",
 	"110000000000000011111   ",
-	"1000000000S0000011111111",
+	"10000000000000011111111",
 	"111111111111111111111   ",NULL};
 	data->s=allocateAndCopyStrings(s);
 	data->mlx = mlx_init();
@@ -99,11 +99,12 @@ void	function(void)
 	mlx_hook(data->window, 17, 0, ft_exit, NULL);
 	mlx_loop_hook(data->mlx , check_key,data);
 	mlx_loop(data->mlx);
-	free(data);
+	// free(data);
 }
 
 int	main(void)
 {
 	function();
+	// printf("%f\n",floor(52.5261300008));
 	return (0);
 }

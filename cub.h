@@ -23,7 +23,13 @@ typedef struct s_keys
     int right;
 }t_keys;
 
-
+typedef struct s_rays
+{
+    double      dis;
+    t_pos       h;
+    t_pos       v;
+    int cas;
+}t_rays;
 
 typedef struct t_data
 {
@@ -38,7 +44,7 @@ typedef struct t_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-    double *rays;
+    t_rays  *rays;
 }t_data;
 
 void	new_position(t_data *data);
@@ -50,4 +56,7 @@ int check_key(t_data *data);
 int	ft_exit(void);
 int key_down(int key,t_data *data);
 int key_up(int key,t_data *data);
-double distance(t_data *data, double angle);
+double distance(t_data *data, double angle, int i);
+double thales(double a,double b, double c);
+double pythagore(t_pos *s, t_pos *d);
+
