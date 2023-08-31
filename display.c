@@ -6,7 +6,7 @@
 /*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 22:46:20 by aatki             #+#    #+#             */
-/*   Updated: 2023/08/30 19:07:50 by aatki            ###   ########.fr       */
+/*   Updated: 2023/08/30 20:13:14 by aatki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	put_ray(t_data *data,double angle,double dis)
 }
 
 void raycasting(t_data *data)
-{q
+{
 	int nbr=0;
 	double	pi;
 	pi = M_PI;
