@@ -164,8 +164,8 @@ void which_way(t_data *data,double angle,int i)
             x=data->rays[i].h.x/70;
             y=data->rays[i].h.y/70;
         }
-  x=data->pos->x/70;
-    y=data->pos->y/70;
+        x=data->pos->x/70;
+        y=data->pos->y/70;
         data->rays[i].v.x = floor(data->pos->x/70) * 70;
         while(x >= 0 && y >= 0  && y <= 11 && x <= 24 && data->s[y][x]!='1')
         {
@@ -176,7 +176,70 @@ void which_way(t_data *data,double angle,int i)
             y=data->rays[i].v.y/70;
         }
     }
-
+    else if (angle >= pi/2 && angle <= pi)
+    {
+        data->rays[i].h.y = floor(data->pos->y/70) * 70 + 0.1;
+        while(x >= 0 && y >= 0  && y <= 11 && x <= 24 && data->s[y][x]!='1')
+        {
+            data->rays[i].h.y += 70;
+            data->rays[i].h.x = data->pos->x - fabs((data->pos->y - data->rays[i].h.y)/tan(angle));
+            x=data->rays[i].h.x/70;
+            y=data->rays[i].h.y/70;
+        }
+        x=data->pos->x/70;
+        y=data->pos->y/70;
+        data->rays[i].v.x = floor(data->pos->x/70) * 70 - 0.1;
+        while(x >= 0 && y >= 0  && y < 11 && x < 24 && data->s[y][x]!='1')//kkkkkkkkkkkkkkkkkkkkkkk
+        {
+            data->rays[i].v.x -= 70;
+            data->rays[i].v.y = data->pos->y + fabs((data->pos->x - data->rays[i].v.x)* tan(angle));
+            x=data->rays[i].v.x/70;
+            y=data->rays[i].v.y/70;
+        }
+    }
+    else if (angle >= pi && angle <= (3*pi)/2)
+    {
+        data->rays[i].h.y = floor(data->pos->y/70) * 70 + 70 - 0.1;
+        while(x >= 0 && y >= 0  && y < 11 && x < 24 && data->s[y][x]!='1')
+        {
+            data->rays[i].h.y -= 70;
+            data->rays[i].h.x = data->pos->x - fabs((data->pos->y - data->rays[i].h.y)/tan(angle));
+            x=data->rays[i].h.x/70;
+            y=data->rays[i].h.y/70;
+        }
+        x=data->pos->x/70;
+        y=data->pos->y/70;
+        data->rays[i].v.x = floor(data->pos->x/70) * 70 - 0.1;//uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+        while(x >= 0 && y >= 0  && y < 11 && x < 24 && data->s[y][x]!='1')
+        {
+            data->rays[i].v.x -= 70;
+            data->rays[i].v.y = data->pos->y - fabs((data->pos->x - data->rays[i].v.x)* tan(angle));
+            x=data->rays[i].v.x/70;
+            y=data->rays[i].v.y/70;
+        }
+    }
+    else if (angle >= 0 && angle <= pi/2)
+    {
+        data->rays[i].h.y = floor(data->pos->y/70) * 70 + 0.1;
+        while(x >= 0 && y >= 0  && y <= 11 && x <= 24 && data->s[y][x]!='1')
+        {
+            data->rays[i].h.y += 70;
+            data->rays[i].h.x = data->pos->x + fabs((data->pos->y - data->rays[i].h.y)/tan(angle));
+            x=data->rays[i].h.x/70;
+            y=data->rays[i].h.y/70;
+        }
+        x=data->pos->x/70;
+        y=data->pos->y/70;
+        data->rays[i].v.x = floor(data->pos->x/70) * 70;
+        while(x >= 0 && y >= 0  && y < 11 && x < 24 && data->s[y][x]!='1')//llllllllllllllllllllllllll
+        {
+            data->rays[i].v.x += 70;
+            data->rays[i].v.y = data->pos->y + fabs((data->pos->x - data->rays[i].v.x)* tan(angle));
+            x=data->rays[i].v.x/70;
+            y=data->rays[i].v.y/70;
+            printf("x==%d y==%d\n",x,y);
+        }
+    }
     if (pythagore(&data->rays[i].h,data->pos) > pythagore(data->pos,&data->rays[i].v))
     {
         data->rays[i].cas = 1;
