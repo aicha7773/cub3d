@@ -1,6 +1,7 @@
 NAME = cub3D
 
-SRC = first_file.c the_movement.c display.c finding_wall.c
+SRC = first_file.c the_movement.c display.c raycasting.c angle_ranges.c \
+	casting_utils.c keys_state.c trigonometric_form.c maths_utils.c
 
 OBJ = ${SRC :%.c=%.o}
 
