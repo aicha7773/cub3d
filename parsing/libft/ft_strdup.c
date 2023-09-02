@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maths_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aatki <aatki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lsadiq <lsadiq@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 18:37:36 by aatki             #+#    #+#             */
-/*   Updated: 2023/09/01 19:14:27 by aatki            ###   ########.fr       */
+/*   Created: 2022/10/18 14:50:13 by lsadiq            #+#    #+#             */
+/*   Updated: 2022/11/08 01:43:41 by lsadiq           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include"libft.h"
 
-double	pythagore(t_pos *s, t_pos *d)
+char	*ft_strdup(const char *s1)
 {
-	return (sqrt(pow(s->x - (d->x), 2) + pow(s->y - (d->y), 2)));
-}
+	size_t	i;
+	char	*p;
 
-double	thales(double a, double b, double c)
-{
-	return ((c / a) * b);
+	i = 0;
+	p = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!p)
+		return (NULL);
+	while (s1[i])
+	{
+		p[i] = s1[i];
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
 }
